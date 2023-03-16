@@ -1,0 +1,28 @@
+<!-- users/templates/registration/login.html -->
+
+<!-- Extend the base template -->
+{% extends 'base.html' %}
+
+<!-- Define content block -->
+{% block content %}
+    <!-- Display Login heading -->
+    <h2>Login</h2>
+
+    <!-- Create a form with the POST method [HTTP method] -->
+    <form method="post">
+        <!-- Include the CSRF token for security.
+        Prevents cross-site request forgery attacks.-->
+        {% csrf_token %}
+        <!-- Render the form fields as paragraphs -->
+        {{ form.as_p }}
+        <!-- Add a submit button for the form -->
+        <input type="submit" value="Login">
+    </form>
+
+    <!-- Add a link to the dashboard page -->
+    <a href="{% url 'dashboard' %}">Back to dashboard</a>
+    <a href="{% url 'social:begin' 'github' %}">Login With GitHub</a>
+    <a href="{% url "password_reset" %}">Reset Password</a>
+    <a href="{% url 'register' %}">Register</a>
+
+{% endblock %}

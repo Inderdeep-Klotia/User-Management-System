@@ -1,0 +1,26 @@
+<!-- users/templates/users/dashboard.html -->
+
+{% extends "base.html" %}
+
+{% block content %}
+Hello, {% if user.username %}{{ user.username }}{% else %}Guest{% endif %}
+
+<div>
+    {% if user.is_authenticated %}
+        {# If the user is authenticated, generate the URL for the 'logout'  #}
+        {# view using the {% url %} template tag #}
+        <a href="{% url 'logout' %}">Logout</a>
+        <a href="{% url 'password_change' %}">Change Password</a>
+    {% else %}
+        {# If the user is not authenticated, generate the URL for the 'login' #}
+        {# view using the {% url %} template tag #}
+        <a href="{% url 'login' %}">Login</a>
+
+        {# NOTE #}
+        {# Since django.contrib.auth.urls is included and defined custom URL #}
+        {# patterns for login and logout views. I can use the names directly #}
+        {# without having to utilize the entire URL #}
+
+    {% endif %}
+</div>
+{% endblock %}
