@@ -139,8 +139,22 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 AUTHENTICATION_BACKENDS =[
     "django.contrib.auth.backends.ModelBackend",
     "social_core.backends.github.GithubOAuth2",
+    "social_core.backends.google.GoogleOAuth2",
 ]
 
 SOCIAL_AUTH_GITHUB_KEY = os.environ.get("SOCIAL_AUTH_GITHUB_KEY")
 SOCIAL_AUTH_GITHUB_SECRET = os.environ.get("SOCIAL_AUTH_GITHUB_SECRET")
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY="704275114611-ag8dffa7n2oro7uijvc2ok2j8rbi804m.apps.googleusercontent.com"
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET="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"
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/4.1/howto/static-files/
+
+STATIC_URL = '/static/'
+
+# Add the following lines
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'users', 'static'),
+]
 

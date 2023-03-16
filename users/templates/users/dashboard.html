@@ -3,24 +3,51 @@
 {% extends "base.html" %}
 
 {% block content %}
-Hello, {% if user.username %}{{ user.username }}{% else %}Guest{% endif %}
-
-<div>
-    {% if user.is_authenticated %}
-        {# If the user is authenticated, generate the URL for the 'logout'  #}
-        {# view using the {% url %} template tag #}
-        <a href="{% url 'logout' %}">Logout</a>
-        <a href="{% url 'password_change' %}">Change Password</a>
-    {% else %}
-        {# If the user is not authenticated, generate the URL for the 'login' #}
-        {# view using the {% url %} template tag #}
-        <a href="{% url 'login' %}">Login</a>
-
-        {# NOTE #}
-        {# Since django.contrib.auth.urls is included and defined custom URL #}
-        {# patterns for login and logout views. I can use the names directly #}
-        {# without having to utilize the entire URL #}
-
-    {% endif %}
+<!--Displaying welcome message -->
+<div class="row">
+    <!-- Create a column that spans 9 out of 12 columns on a medium-sized
+    screen and larger -->
+    <div class="col-md-9">
+        <h6 class="text-start">Welcome {% if user.username %}{{ user.username }},
+        {% else %}Guest,{% endif %} to the User Management System! Here you'll
+        find the following functionality enabled:
+        </h6>
+    </div>
 </div>
+
+<!--Display buttons -->
+<div class="row">
+    <div class="col-md-12 text-start">
+        {% if user.is_authenticated %}
+            {# If user is authenticated, generate URL to 'logout' and change password #}
+            {# view using the {% url %} template tag #}
+            <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a>
+            <div class="mt-3">
+                <a href="{% url 'password_change' %}" class="btn btn-secondary">Change Password</a>
+            </div>
+
+        {% else %}
+            <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+
+            {# NOTE #}
+            {# Since django.contrib.auth.urls is included and defined custom URL #}
+            {# patterns for login and logout views. I can use the names directly #}
+            {# without having to utilize the entire URL #}
+        {% endif %}
+    </div>
+</div>
+
+<!--List of features: -->
+<div class="container mt-5">
+    <h3>List of Features</h3>
+    <ul class="list-group">
+      <li class="list-group-item">[1] Users have the ability to register, log in, reset their password via email, and change their passwords</li>
+      <li class="list-group-item">[2] New users can register and authenticate their accounts</li>
+      <li class="list-group-item">[3] Integrated Single Sign-On (SSO) authentication utilizing OAuth2, allowing users to log in with their GitHub and Google Accounts</li>
+      <li class="list-group-item"></li>
+    </ul>
+</div>
+
+
+
 {% endblock %}

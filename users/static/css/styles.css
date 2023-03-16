@@ -1,0 +1,6 @@
+/* users/static/css/styles.css */
+
+/* Styling bulleted list with circle in front */
+.bulleted-list {
+    list-style-type: disc;
+}
