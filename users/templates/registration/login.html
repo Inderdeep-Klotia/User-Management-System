@@ -1,29 +1,42 @@
-<!-- users/templates/registration/login.html -->
-
-<!-- Extend the base template -->
 {% extends 'base.html' %}
 
-<!-- Define content block -->
+{% load widget_tweaks %}
+
 {% block content %}
-    <!-- Display Login heading -->
+
+<div class="container"> <!--Bootstrap container for responsive styling -->
     <h2>Login</h2>
 
-    <!-- Create a form with the POST method [HTTP method] -->
-    <form method="post">
-        <!-- Include the CSRF token for security.
-        Prevents cross-site request forgery attacks.-->
-        {% csrf_token %}
-        <!-- Render the form fields as paragraphs -->
-        {{ form.as_p }}
-        <!-- Add a submit button for the form -->
-        <input type="submit" value="Login">
-    </form>
+    <hr>
+    <form method="post"> <!--Form with POST method to submit login data -->
+        {% csrf_token %} <!--CSRF token for security [prevent cross-site
+        request forgery attacks]
+         -->
 
-    <!-- Add a link to the dashboard page -->
-    <a href="{% url 'dashboard' %}">Back to dashboard</a>
-    <a href="{% url 'social:begin' 'github' %}">Sign in With GitHub</a>
-    <a href="{% url 'social:begin' 'google-oauth2' %}">Sign in With Google</a>
-    <a href="{% url "password_reset" %}">Reset Password</a>
-    <a href="{% url 'register' %}">Register</a>
+        <div class="form-group"> <!--Form group for username field -->
+            {{ form.username.label_tag }} <!-- Displays the label -->
+            {{ form.username|add_class:"form-control" }}<!-- Displays the
+            username field and adds the 'form-control' Bootstrap class to
+            style the input -->
+        </div>
+
+        <div class="form-group">
+            {{ form.password.label_tag }} {{ form.password|add_class:"form-control" }}
+        </div>
+
+        <input type="submit" value="Login" class="btn btn-primary mt-2">
+    </form> <!--END OF FORM -->
+    <hr>
+
+<div class="mt-3">
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary"> <-- Back to
+        dashboard</a><br>
+    <a href="{% url 'social:begin' 'github' %}" class="btn btn-dark mt-2">Sign in With GitHub</a><br>
+    <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-danger mt-2">Sign in With Google</a><br>
+    <a href="{% url 'password_reset' %}" class="btn btn-warning mt-2">Reset Password</a><br>
+    <a href="{% url 'register' %}" class="btn btn-primary mt-2">Register</a>
+</div>
+
+</div> <!--END OF CONTAINER -->
 
 {% endblock %}

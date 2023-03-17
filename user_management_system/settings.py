@@ -34,6 +34,9 @@ INSTALLED_APPS = [
     # Application. Open-source library that provides an easy way to authenticate
     # users with different social platforms.
     "social_django",
+    # Add widget_tweaks library. Assists in modifying the rendering of form
+    # fields in templates.
+    "widget_tweaks",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
